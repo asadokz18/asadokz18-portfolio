@@ -735,6 +735,61 @@ textarea,
   color: var(--accent-color);
 }
 
+/* ---- Projects: Filter Bar ---- */
+.projects-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin: -0.5rem 0 2rem;
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.15rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-background-color);
+  color: var(--muted-text-color);
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.filter-btn:hover {
+  color: var(--text-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.filter-btn.active {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 14px var(--shadow-color);
+}
+
+.filter-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.filter-btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
 /* ---- Projects: 3 / 2 / 1 column grid ---- */
 .project-grid {
   display: grid;
@@ -786,6 +841,66 @@ textarea,
   margin-top: auto;
   padding-top: 0.4rem;
 } /* pushes buttons to the card bottom */
+
+/* ---- Projects: Show More button & card visibility ---- */
+.projects-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+.project-card.project-hidden {
+  display: none !important;
+}
+
+.projects-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted-text-color);
+  font-size: 1.05rem;
+  padding: 3rem 1.5rem;
+  background-color: var(--card-background-color);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+}
+
+.projects-empty i {
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
+@keyframes projectFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card.project-revealed {
+  animation: projectFadeIn 0.35s ease forwards;
+}
+
+#show-more-projects-btn i {
+  transition: transform 0.25s ease;
+}
+
+#show-more-projects-btn[aria-expanded="true"] i {
+  transform: rotate(180deg);
+}
+
+.btn:hover .fa-chevron-down {
+  transform: translateY(2px);
+}
+
+#show-more-projects-btn[aria-expanded="true"]:hover .fa-chevron-down {
+  transform: rotate(180deg) translateY(2px);
+}
 
 /* ---- Notes ---- */
 .notes-grid {
@@ -1354,6 +1469,14 @@ textarea,
   .project-grid,
   .notes-grid {
     grid-template-columns: 1fr;
+  }
+  .projects-filter-bar {
+    gap: 0.45rem;
+    margin-bottom: 1.6rem;
+  }
+  .filter-btn {
+    padding: 0.4rem 0.95rem;
+    font-size: 0.85rem;
   }
   .info-grid {
     grid-template-columns: 1fr 1fr;

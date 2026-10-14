@@ -349,6 +349,135 @@
     }
 
     /* ----------------------------------------------------------------------
+       10. PROJECTS FILTER & SHOW MORE / LESS
+       Filters project cards by category (All, JavaScript, Full Stack,
+       HTML & CSS) and limits the visible matching cards to 6 initially.
+       Visitors can click "Show More Projects" to see all matches.
+       ---------------------------------------------------------------------- */
+    function initProjectsFilter() {
+        var grid = document.querySelector('.project-grid');
+        var filterBar = document.querySelector('.projects-filter-bar');
+        var btn = document.getElementById('show-more-projects-btn');
+        if (!grid) return;
+
+        var cards = Array.prototype.slice.call(grid.querySelectorAll('.project-card'));
+        var filterBtns = filterBar ? Array.prototype.slice.call(filterBar.querySelectorAll('.filter-btn')) : [];
+        var INITIAL_LIMIT = 6;
+        var currentFilter = 'all';
+        var isExpanded = false;
+        var btnText = btn ? btn.querySelector('.btn-text') : null;
+
+        function cardMatches(card, filter) {
+            if (filter === 'all') return true;
+            var cat = (card.getAttribute('data-category') || '').toLowerCase();
+            if (cat.indexOf(filter) !== -1) return true;
+            if (filter === 'php-sql' && (cat.indexOf('php') !== -1 || cat.indexOf('sql') !== -1)) return true;
+            if (filter === 'mern' && (cat.indexOf('mern') !== -1 || (cat.indexOf('react') !== -1 && cat.indexOf('native') === -1) || cat.indexOf('node') !== -1)) return true;
+            if (filter === 'react-native' && (cat.indexOf('react-native') !== -1 || cat.indexOf('native') !== -1)) return true;
+
+            // Fallback: check chips text
+            var chips = card.querySelectorAll('.chips li');
+            for (var i = 0; i < chips.length; i++) {
+                var text = chips[i].textContent.toLowerCase();
+                if (filter === 'javascript' && (text.indexOf('javascript') !== -1 || text.indexOf('js') !== -1)) return true;
+                if (filter === 'html-css' && (text.indexOf('html') !== -1 || text.indexOf('css') !== -1)) return true;
+                if (filter === 'php-sql' && (text.indexOf('php') !== -1 || text.indexOf('sql') !== -1 || text.indexOf('mysql') !== -1)) return true;
+                if (filter === 'mern' && (text.indexOf('mern') !== -1 || (text.indexOf('react') !== -1 && text.indexOf('native') === -1) || text.indexOf('node') !== -1 || text.indexOf('express') !== -1 || text.indexOf('mongo') !== -1)) return true;
+                if (filter === 'react-native' && (text.indexOf('react native') !== -1 || text.indexOf('native') !== -1)) return true;
+            }
+            return false;
+        }
+
+        function render() {
+            var matchingCards = [];
+            var nonMatchingCards = [];
+
+            cards.forEach(function (card) {
+                if (cardMatches(card, currentFilter)) {
+                    matchingCards.push(card);
+                } else {
+                    nonMatchingCards.push(card);
+                }
+            });
+
+            // Show or hide empty notice if no cards match
+            var emptyNotice = document.getElementById('projects-empty');
+            if (emptyNotice) {
+                emptyNotice.hidden = matchingCards.length > 0;
+            }
+
+            // Hide non-matching cards completely
+            nonMatchingCards.forEach(function (card) {
+                card.classList.remove('project-revealed');
+                card.classList.add('project-hidden');
+            });
+
+            // For matching cards, apply 6-card limit unless expanded
+            matchingCards.forEach(function (card, index) {
+                if (!isExpanded && index >= INITIAL_LIMIT) {
+                    card.classList.remove('project-revealed');
+                    card.classList.add('project-hidden');
+                } else {
+                    card.classList.remove('project-hidden');
+                    card.classList.add('project-revealed');
+                }
+            });
+
+            // Handle Show More button visibility and state
+            if (btn && btn.parentElement) {
+                if (matchingCards.length <= INITIAL_LIMIT) {
+                    btn.parentElement.style.display = 'none';
+                } else {
+                    btn.parentElement.style.display = 'flex';
+                    btn.setAttribute('aria-expanded', String(isExpanded));
+                    if (btnText) {
+                        btnText.textContent = isExpanded ? 'Show Less Projects' : 'Show More Projects';
+                    }
+                }
+            }
+        }
+
+        // Set up filter buttons click listeners
+        filterBtns.forEach(function (filterBtn) {
+            filterBtn.addEventListener('click', function () {
+                var selectedFilter = filterBtn.getAttribute('data-filter') || 'all';
+                if (selectedFilter === currentFilter) return;
+
+                currentFilter = selectedFilter;
+                isExpanded = false; // reset expand state when switching filter
+
+                filterBtns.forEach(function (b) {
+                    var isActive = b === filterBtn;
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-pressed', String(isActive));
+                });
+
+                render();
+            });
+        });
+
+        // Set up Show More button click listener
+        if (btn) {
+            btn.addEventListener('click', function () {
+                isExpanded = !isExpanded;
+                render();
+
+                // When collapsing, smoothly scroll back to the 6th card
+                if (!isExpanded) {
+                    var matchingCards = cards.filter(function (card) {
+                        return cardMatches(card, currentFilter);
+                    });
+                    var targetCard = matchingCards[INITIAL_LIMIT - 1] || grid;
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        }
+
+        // Initial render
+        render();
+    }
+
+    /* ----------------------------------------------------------------------
        START
        script.js is loaded with "defer", so the HTML is ready when this runs.
        ---------------------------------------------------------------------- */
@@ -362,6 +491,7 @@
         initContactForm();
         initTypingEffect();
         setCopyrightYear();
+        initProjectsFilter();
     }
 
     init();

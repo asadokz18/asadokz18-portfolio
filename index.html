@@ -1,636 +1,779 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Asad Ullah | Web Developer</title>
 
-    <!-- SEO metadata -->
-    <meta name="description" content="Personal portfolio of Asad Ullah, a Computer Science graduate and Web Developer focused on responsive websites and modern web development." />
-    <meta name="author" content="Asad Ullah" />
-    <meta name="theme-color" content="#1e40af" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asad Ullah | Web Developer</title>
 
-    <!-- Open Graph metadata (used when the link is shared on social media) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Asad Ullah | Web Developer" />
-    <meta property="og:description" content="Computer Science graduate and Web Developer focused on responsive websites and modern web development."/>
-    <meta property="og:image" content="assets/images/profile.png" />
+  <!-- SEO metadata -->
+  <meta name="description"
+    content="Personal portfolio of Asad Ullah, a Computer Science graduate and Web Developer focused on responsive websites and modern web development." />
+  <meta name="author" content="Asad Ullah" />
+  <meta name="theme-color" content="#1e40af" />
 
-    <!--- Icon -->
-    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg" />
+  <!-- Open Graph metadata (used when the link is shared on social media) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Asad Ullah | Web Developer" />
+  <meta property="og:description"
+    content="Computer Science graduate and Web Developer focused on responsive websites and modern web development." />
+  <meta property="og:image" content="assets/images/profile.png" />
 
-    <!--font awesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <!--- Icon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg" />
 
-    <link rel="stylesheet" href="style.css" />
+  <!--font awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Tiny inline script that runs BEFORE the page is painted.
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Tiny inline script that runs BEFORE the page is painted.
     1. It adds a "js" class so CSS only hides scroll-animated content when JavaScript works.
     2. It applies the saved theme (or the system theme) immediately, which avoids a white flash in dark mode. -->
-    <script>
-      (function () {
-        var root = document.documentElement;
-        root.classList.add("js");
-        var theme = null;
-        try {
-          theme = localStorage.getItem("theme");
-        } catch (e) {}
-        if (!theme) {
-          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        }
-        root.setAttribute("data-theme", theme);
-      })();
-    </script>
-    <script src="script.js" defer></script>
-  </head>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      var theme = null;
+      try {
+        theme = localStorage.getItem("theme");
+      } catch (e) { }
+      if (!theme) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      root.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <script src="script.js" defer></script>
+</head>
 
-  <body>
-    <a class="skip-link" href="#main">Skip to main content</a>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-    <!-- Header / Navigation
+  <!-- Header / Navigation
     Sticky bar with the logo, section links, the theme toggle,
     and a hamburger button that is only visible on small screens.-->
-    <header class="site-header" id="top">
-      <div class="container header-inner">
-        <a class="brand" href="#home" aria-label="Asad Ullah - go to top of page">
-          <!-- The logo sits on a light tile so it stays visible in dark mode. The alt text doubles as a text fallback. -->
-            <span class="brand-logo">
-            <img src="assets/images/logo.svg" alt="asadokz18 logo" width="28" height="32"/></span>
-            <span class="brand-name">Asad Ullah</span>
-        </a>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Asad Ullah - go to top of page">
+        <!-- The logo sits on a light tile so it stays visible in dark mode. The alt text doubles as a text fallback. -->
+        <span class="brand-logo">
+          <img src="assets/images/logo.svg" alt="asadokz18 logo" width="28" height="32" /></span>
+        <span class="brand-name">Asad Ullah</span>
+      </a>
 
-        <nav id="site-nav" class="site-nav" aria-label="Main navigation">
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#journey">Journey</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#notes">Notes</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#notes">Notes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-        <div class="header-actions">
-          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
-            <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
-          </button>
-          <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-          </button>
-        </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+          <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+          aria-controls="site-nav">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main id="main">
-      <!--Hero Section
+  <main id="main">
+    <!--Hero Section
         Introduces the website owner and provides
         quick links to important portfolio actions. -->
-      <section class="hero" id="home" aria-labelledby="hero-title">
-        <div class="container hero-grid">
-          <div class="hero-text">
-            <p class="hero-hello">Hello, I'm</p>
-            <h1 id="hero-title">Asad Ullah</h1>
-            <p class="hero-role">Web Developer</p>
-            <!--Typing effect line. The words are typed and deleted by script.js.
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="hero-hello">Hello, I'm</p>
+          <h1 id="hero-title">Asad Ullah</h1>
+          <p class="hero-role">Web Developer</p>
+          <!--Typing effect line. The words are typed and deleted by script.js.
             Without JavaScript (or with reduced motion) the first word simply stays visible.
             It is hidden from screen readers because the text keeps changing;
             the intro paragraph below already says the same thing. -->
-            <p class="hero-typing" aria-hidden="true">
-              <span id="typed">Frontend Development</span><span class="cursor"></span>
-            </p>
-            <p class="hero-intro">"I design and build responsive websites and web applications using modern web technologies. I enjoy turning ideas into clean, functional, and user-friendly digital experiences."</p>
+          <p class="hero-typing" aria-hidden="true">
+            <span id="typed">Frontend Development</span><span class="cursor"></span>
+          </p>
+          <p class="hero-intro">"I design and build responsive websites and web applications using modern web
+            technologies. I enjoy turning ideas into clean, functional, and user-friendly digital experiences."</p>
 
-            <div class="btn-row">
-              <a class="btn btn-primary" href="#projects" >
-                <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>View My Work</a>
-              <a class="btn btn-outline" href="assets/cv/Asad_Ullah_Resume.pdf" download>
-                <i class="fa-solid fa-download" aria-hidden="true"></i>Download CV</a>
-              <a class="btn btn-outline" href="#contact">
-                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Contact Me</a>
-            </div>
-
-            <ul class="social-list" aria-label="Social media links">
-              <li>
-                <a href="https://linkedin.com/in/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Asad Ullah on LinkedIn (opens in a new tab)">
-                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Asad Ullah on GitHub (opens in a new tab)">
-                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://facebook.com/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Asad Ullah on Facebook (opens in a new tab)">
-                  <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://instagram.com/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Asad Ullah on Instagram (opens in a new tab)">
-                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                </a>
-              </li>
-              <span class="username">@asadokz18</span>
-            </ul>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#projects">
+              <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>View My Work</a>
+            <a class="btn btn-outline" href="assets/cv/Asad_Ullah_Resume.pdf" download>
+              <i class="fa-solid fa-download" aria-hidden="true"></i>Download CV</a>
+            <a class="btn btn-outline" href="#contact">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Contact Me</a>
           </div>
 
-          <figure class="hero-photo">
-            <!-- Hero image is above the fold, so it is NOT lazy-loaded -->
-            <img src="assets/images/profile.png" alt="Portrait of Asad Ullah in a suit and tie" width="803" height="1000"/>
-          </figure>
+          <ul class="social-list" aria-label="Social media links">
+            <li>
+              <a href="https://linkedin.com/in/asadokz18" target="_blank" rel="noopener noreferrer"
+                aria-label="Asad Ullah on LinkedIn (opens in a new tab)">
+                <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/asadokz18" target="_blank" rel="noopener noreferrer"
+                aria-label="Asad Ullah on GitHub (opens in a new tab)">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://facebook.com/asadokz18" target="_blank" rel="noopener noreferrer"
+                aria-label="Asad Ullah on Facebook (opens in a new tab)">
+                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/asadokz18" target="_blank" rel="noopener noreferrer"
+                aria-label="Asad Ullah on Instagram (opens in a new tab)">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+            </li>
+            <span class="username">@asadokz18</span>
+          </ul>
         </div>
-      </section>
 
-      <!-- About Me Section
+        <figure class="hero-photo">
+          <!-- Hero image is above the fold, so it is NOT lazy-loaded -->
+          <img src="assets/images/profile.png" alt="Portrait of Asad Ullah in a suit and tie" width="803"
+            height="1000" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- About Me Section
         Short honest biography plus four quick-fact cards. -->
-      <section class="section reveal" id="about" aria-labelledby="about-title">
-        <div class="container">
-          <h2 id="about-title" class="section-title">About Me</h2>
-          <div class="about-grid">
-            <div class="about-text">
-              <p class="about-role">Full Stack Developer</p>
-              <p>I am a Computer Science graduate (BS Computer Science, 2022–2026) with hands-on training in Python, and Web Development. I enjoy building websites and solving problems with code.</p>
-              <p>My goal is to work as a Full Stack Developer and create complete web applications using both front-end and back-end skills.</p>
-            </div>
-            <ul class="info-grid">
-              <li class="card">
-                <i class="fa-solid fa-graduation-cap info-icon" aria-hidden="true"></i>
-                <span class="info-label">Education</span>
-                <span class="info-value">BS Computer Science</span>
-              </li>
-              <li class="card">
-                <i class="fa-solid fa-calendar-days info-icon" aria-hidden="true"></i>
-                <span class="info-label">Graduation</span>
-                <span class="info-value">2022–2026</span>
-              </li>
-              <li class="card">
-                <i class="fa-solid fa-code info-icon" aria-hidden="true"></i>
-                <span class="info-label">Focus</span>
-                <span class="info-value">Web Development</span>
-              </li>
-              <li class="card">
-                <i class="fa-solid fa-bullseye info-icon" aria-hidden="true"></i>
-                <span class="info-label">Goal</span>
-                <span class="info-value">Full Stack Developer</span>
-              </li>
-            </ul>
+    <section class="section reveal" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title" class="section-title">About Me</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="about-role">Full Stack Developer</p>
+            <p>I am a Computer Science graduate (BS Computer Science, 2022–2026) with hands-on training in Python, and
+              Web Development. I enjoy building websites and solving problems with code.</p>
+            <p>My goal is to work as a Full Stack Developer and create complete web applications using both front-end
+              and back-end skills.</p>
           </div>
+          <ul class="info-grid">
+            <li class="card">
+              <i class="fa-solid fa-graduation-cap info-icon" aria-hidden="true"></i>
+              <span class="info-label">Education</span>
+              <span class="info-value">BS Computer Science</span>
+            </li>
+            <li class="card">
+              <i class="fa-solid fa-calendar-days info-icon" aria-hidden="true"></i>
+              <span class="info-label">Graduation</span>
+              <span class="info-value">2022–2026</span>
+            </li>
+            <li class="card">
+              <i class="fa-solid fa-code info-icon" aria-hidden="true"></i>
+              <span class="info-label">Focus</span>
+              <span class="info-value">Web Development</span>
+            </li>
+            <li class="card">
+              <i class="fa-solid fa-bullseye info-icon" aria-hidden="true"></i>
+              <span class="info-label">Goal</span>
+              <span class="info-value">Full Stack Developer</span>
+            </li>
+          </ul>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Skills Section
+    <!-- Skills Section
         Split into "Current Skills" and "Currently Learning" so the
         difference is clear from the headings and chip style, not just color.
         No percentages are shown on purpose. -->
-      <section
-        class="section section-alt reveal"
-        id="skills"
-        aria-labelledby="skills-title"
-      >
-        <div class="container">
-          <h2 id="skills-title" class="section-title">Skills</h2>
+    <section class="section section-alt reveal" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 id="skills-title" class="section-title">Skills</h2>
 
-          <h3 class="skills-group-title"><i class="fa-solid fa-circle-check" aria-hidden="true"></i>CurrentSkills</h3>
-          <div class="skills-grid">
-            <article class="card skill-card">
-              <h4><i class="fa-brands fa-html5" aria-hidden="true"></i>Front-End</h4>
+        <h3 class="skills-group-title"><i class="fa-solid fa-circle-check" aria-hidden="true"></i>CurrentSkills</h3>
+        <div class="skills-grid">
+          <article class="card skill-card">
+            <h4><i class="fa-brands fa-html5" aria-hidden="true"></i>Front-End</h4>
+            <ul class="chips">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Responsive Web Design</li>
+            </ul>
+          </article>
+          <article class="card skill-card">
+            <h4><i class="fa-brands fa-python" aria-hidden="true"></i>Programming</h4>
+            <ul class="chips">
+              <li>Python</li>
+              <li>C</li>
+              <li>C++</li>
+            </ul>
+          </article>
+          <article class="card skill-card">
+            <h4><i class="fa-solid fa-database" aria-hidden="true"></i>Back-End &amp; Database</h4>
+            <ul class="chips">
+              <li>PHP</li>
+              <li>MySQL</li>
+              <li>SQL</li>
+            </ul>
+          </article>
+          <article class="card skill-card">
+            <h4><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>Tools &amp; Practices</h4>
+            <ul class="chips">
+              <li>Git</li>
+              <li>GitHub</li>
+            </ul>
+          </article>
+        </div>
+
+        <h3 class="skills-group-title"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i>Currently Learning
+        </h3>
+        <div class="skills-grid skills-grid-learning">
+          <article class="card skill-card">
+            <h4><i class="fa-brands fa-node-js" aria-hidden="true"></i>Back-End</h4>
+            <ul class="chips chips-learning">
+              <li>Node.js</li>
+              <li>Express.js</li>
+            </ul>
+          </article>
+          <article class="card skill-card">
+            <h4><i class="fa-solid fa-server" aria-hidden="true"></i>Databases</h4>
+            <ul class="chips chips-learning">
+              <li>MongoDB</li>
+              <li>PostgreSQL</li>
+            </ul>
+          </article>
+          <article class="card skill-card">
+            <h4><i class="fa-brands fa-react" aria-hidden="true"></i>Modern Front-End &amp; Mobile</h4>
+            <ul class="chips chips-learning">
+              <li>ReactJS</li>
+              <li>React Native</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Development Journey Section
+        A vertical timeline (works on every screen size).
+        Modules 1-2 are current skills; 3-5 are learning goals. -->
+    <section class="section reveal" id="journey" aria-labelledby="journey-title">
+      <div class="container">
+        <h2 id="journey-title" class="section-title">Development Journey</h2>
+        <ol class="timeline">
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true">1</span>
+            <div class="card timeline-card">
+              <p class="timeline-status">Current skills</p>
+              <h3>Module 1 — Web Designing</h3>
+              <ul class="chips">
+                <li>HTML5</li>
+                <li>CSS3</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true">2</span>
+            <div class="card timeline-card">
+              <p class="timeline-status">Current skills</p>
+              <h3>Module 2 — Front-End Development</h3>
+              <ul class="chips">
+                <li>JavaScript</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot " aria-hidden="true">3</span>
+            <div class="card timeline-card">
+              <p class="timeline-status">Current skills</p>
+              <h3>Module 3 — Modern Front-End Development</h3>
+              <ul class="chips ">
+                <li>ReactJS</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot timeline-dot-next" aria-hidden="true">4</span>
+            <div class="card timeline-card">
+              <p class="timeline-status">Learning goal</p>
+              <h3>Module 4 — Back-End App Development</h3>
+              <ul class="chips chips-learning">
+                <li>NodeJS</li>
+                <li>Express</li>
+                <li>MongoDB</li>
+                <li>PostgreSQL</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot timeline-dot-next" aria-hidden="true">5</span>
+            <div class="card timeline-card">
+              <p class="timeline-status">Learning goal</p>
+              <h3>Module 5 — Mobile App Development</h3>
+              <ul class="chips chips-learning">
+                <li>React Native</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Projects Section
+        Responsive grid: 3 columns on desktop, 2 on tablet, 1 on mobile.
+        Images use loading="lazy" and object-fit: cover so they never stretch. -->
+    <section class="section section-alt reveal" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 id="projects-title" class="section-title">Projects</h2>
+
+        <div class="projects-filter-bar" role="toolbar" aria-label="Filter projects by category">
+          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>All
+          </button>
+          <button type="button" class="filter-btn" data-filter="javascript" aria-pressed="false">
+            <i class="fa-brands fa-js" aria-hidden="true"></i>JavaScript
+          </button>
+          <button type="button" class="filter-btn" data-filter="mern" aria-pressed="false">
+            <i class="fa-brands fa-react" aria-hidden="true"></i>MERN Stack
+          </button>
+          <button type="button" class="filter-btn" data-filter="react-native" aria-pressed="false">
+            <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i>React Native
+          </button>
+          <button type="button" class="filter-btn" data-filter="php-sql" aria-pressed="false">
+            <i class="fa-solid fa-database" aria-hidden="true"></i>PHP, SQL
+          </button>
+          <button type="button" class="filter-btn" data-filter="html-css" aria-pressed="false">
+            <i class="fa-brands fa-html5" aria-hidden="true"></i>HTML &amp; CSS
+          </button>
+        </div>
+
+        <div class="project-grid" id="project-grid">
+          <p class="projects-empty" id="projects-empty" hidden>
+            <i class="fa-solid fa-code" aria-hidden="true"></i> Projects in this category will be added soon.
+          </p>
+          <article class="card project-card" data-category="javascript html-css">
+            <div class="project-img">
+              <img src="assets/images/asadokz-practice-portfolio.png" alt="Screenshot of the Practice Portfolio website"
+                width="1896" height="883" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Practice Portfolio</h3>
+              <p>A personal portfolio practice project developed to improve website structure, responsive design, UI
+                development, and Vanilla JavaScript skills.</p>
               <ul class="chips">
                 <li>HTML5</li>
                 <li>CSS3</li>
                 <li>JavaScript</li>
-                <li>Responsive Web Design</li>
               </ul>
-            </article>
-            <article class="card skill-card">
-              <h4><i class="fa-brands fa-python" aria-hidden="true"></i>Programming</h4>
+              <div class="btn-row">
+                <a class="btn btn-primary btn-sm" href="https://asadokz-portfolio.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of Practice Portfolio (opens in a new tab)">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card" data-category="javascript html-css">
+            <div class="project-img">
+              <img src="assets/images/asadokz-practice-portfolio.png" alt="Screenshot of the Practice Portfolio website"
+                width="1896" height="883" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Practice Portfolio</h3>
+              <p>A personal portfolio practice project developed to improve website structure, responsive design, UI
+                development, and Vanilla JavaScript skills.</p>
               <ul class="chips">
-                <li>Python</li>
-                <li>C</li>
-                <li>C++</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
               </ul>
-            </article>
-            <article class="card skill-card">
-              <h4><i class="fa-solid fa-database" aria-hidden="true"></i>Back-End &amp; Database</h4>
+              <div class="btn-row">
+                <a class="btn btn-primary btn-sm" href="https://asadokz-portfolio.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of Practice Portfolio (opens in a new tab)">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card" data-category="javascript html-css">
+            <div class="project-img">
+              <img src="assets/images/asadokz-practice-portfolio.png" alt="Screenshot of the Practice Portfolio website"
+                width="1896" height="883" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Practice Portfolio</h3>
+              <p>A personal portfolio practice project developed to improve website structure, responsive design, UI
+                development, and Vanilla JavaScript skills.</p>
               <ul class="chips">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+              </ul>
+              <div class="btn-row">
+                <a class="btn btn-primary btn-sm" href="https://asadokz-portfolio.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of Practice Portfolio (opens in a new tab)">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card" data-category="javascript html-css">
+            <div class="project-img">
+              <img src="assets/images/asadokz-practice-portfolio.png" alt="Screenshot of the Practice Portfolio website"
+                width="1896" height="883" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Practice Portfolio</h3>
+              <p>A personal portfolio practice project developed to improve website structure, responsive design, UI
+                development, and Vanilla JavaScript skills.</p>
+              <ul class="chips">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+              </ul>
+              <div class="btn-row">
+                <a class="btn btn-primary btn-sm" href="https://asadokz-portfolio.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of Practice Portfolio (opens in a new tab)">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card" data-category="php-sql javascript">
+            <div class="project-img">
+              <img src="assets/images/hostel-management.png" alt="Screenshot of the Hostel Management System"
+                width="1000" height="667" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Hostel Management System</h3>
+              <p>A responsive Hostel Management System developed as a Final Year Project for managing hostel residents,
+                rooms, fees, complaints, notices, and administrative operations.</p>
+              <ul class="chips">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
                 <li>PHP</li>
                 <li>MySQL</li>
-                <li>SQL</li>
               </ul>
-            </article>
-            <article class="card skill-card">
-              <h4><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>Tools &amp; Practices</h4>
+              <div class="btn-row">
+                <a class="btn btn-primary btn-sm" href="https://final-year-project-bice-chi.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of Hostel Management System (opens in a new tab)">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card" data-category="javascript html-css">
+            <div class="project-img">
+              <img src="assets/images/amazon-clone.png" alt="Screenshot of the Amazon Home Page Clone" width="1000"
+                height="500" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Amazon Home Page Clone</h3>
+              <p>A responsive practice project recreating the layout and user interface of an Amazon-style home page
+                using front-end technologies.</p>
               <ul class="chips">
-                <li>Git</li>
-                <li>GitHub</li>
-                <li>SEO</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
               </ul>
-            </article>
-          </div>
+              <div class="btn-row">
+                <a class="btn btn-primary btn-sm" href="https://amazonhomepageclone-omega.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of Amazon Home Page Clone (opens in a new tab)">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
+              </div>
+            </div>
+          </article>
 
-          <h3 class="skills-group-title"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i>Currently Learning</h3>
-          <div class="skills-grid skills-grid-learning">
-            <article class="card skill-card">
-              <h4><i class="fa-brands fa-node-js" aria-hidden="true"></i>Back-End</h4>
-              <ul class="chips chips-learning">
-                <li>Node.js</li>
-                <li>Express.js</li>
+          <article class="card project-card" data-category="html-css">
+            <div class="project-img">
+              <img src="assets/images/html-css-practice.png" alt="Screenshot of the HTML and CSS practice project"
+                width="1000" height="500" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>HTML &amp; CSS Practice</h3>
+              <p>A collection of front-end practice work created to improve HTML structure, CSS styling, layouts, and
+                responsive design skills.</p>
+              <ul class="chips">
+                <li>HTML5</li>
+                <li>CSS3</li>
               </ul>
-            </article>
-            <article class="card skill-card">
-              <h4><i class="fa-solid fa-server" aria-hidden="true"></i>Databases</h4>
-              <ul class="chips chips-learning">
-                <li>MongoDB</li>
-                <li>PostgreSQL</li>
+              <div class="btn-row">
+                <a class="btn btn-primary btn-sm" href="https://mypracticeproject.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of HTML and CSS Practice (opens in a new tab)">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card" data-category="html-css">
+            <div class="project-img">
+              <img src="assets/images/css-transform.png" alt="Screenshot of the CSS Transform Practice project"
+                width="1000" height="500" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>CSS Transform Practice</h3>
+              <p>A front-end practice project demonstrating CSS transforms, animations, transitions, positioning, and
+                visual effects. </p>
+              <ul class="chips">
+                <li>HTML5</li>
+                <li>CSS3</li>
               </ul>
-            </article>
-            <article class="card skill-card">
-              <h4><i class="fa-brands fa-react" aria-hidden="true"></i>Modern Front-End &amp; Mobile</h4>
-              <ul class="chips chips-learning">
-                <li>ReactJS</li>
-                <li>React Native</li>
-              </ul>
-            </article>
-          </div>
+              <div class="btn-row">
+                <a class="btn btn-primary btn-sm" href="https://transform-practice.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of CSS Transform Practice (opens in a new tab)">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
-      </section>
 
-      <!-- Development Journey Section
-        A vertical timeline (works on every screen size).
-        Modules 1-2 are current skills; 3-5 are learning goals. -->
-      <section class="section reveal" id="journey" aria-labelledby="journey-title">
-        <div class="container">
-          <h2 id="journey-title" class="section-title">Development Journey</h2>
-          <ol class="timeline">
-            <li class="timeline-item">
-              <span class="timeline-dot" aria-hidden="true">1</span>
-              <div class="card timeline-card">
-                <p class="timeline-status">Current skills</p>
-                <h3>Module 1 — Web Designing</h3>
-                <ul class="chips">
-                  <li>HTML5</li>
-                  <li>CSS3</li>
-                </ul>
-              </div>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-dot" aria-hidden="true">2</span>
-              <div class="card timeline-card">
-                <p class="timeline-status">Current skills</p>
-                <h3>Module 2 — Front-End Development</h3>
-                <ul class="chips">
-                  <li>JavaScript</li>
-                </ul>
-              </div>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-dot " aria-hidden="true">3</span>
-              <div class="card timeline-card">
-                <p class="timeline-status">Current goal</p>
-                <h3>Module 3 — Modern Front-End Development</h3>
-                <ul class="chips ">
-                  <li>ReactJS</li>
-                </ul>
-              </div>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-dot timeline-dot-next" aria-hidden="true">4</span>
-              <div class="card timeline-card">
-                <p class="timeline-status">Learning goal</p>
-                <h3>Module 4 — Back-End App Development</h3>
-                <ul class="chips chips-learning">
-                  <li>NodeJS</li>
-                  <li>Express</li>
-                  <li>MongoDB</li>
-                  <li>PostgreSQL</li>
-                </ul>
-              </div>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-dot timeline-dot-next" aria-hidden="true">5</span>
-              <div class="card timeline-card">
-                <p class="timeline-status">Learning goal</p>
-                <h3>Module 5 — Mobile App Development</h3>
-                <ul class="chips chips-learning">
-                  <li>React Native</li>
-                </ul>
-              </div>
-            </li>
-          </ol>
+        <div class="projects-actions">
+          <button id="show-more-projects-btn" class="btn btn-outline" type="button" aria-expanded="false" aria-controls="project-grid">
+            <span class="btn-text">Show More Projects</span>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Projects Section
-        Responsive grid: 3 columns on desktop, 2 on tablet, 1 on mobile.
-        Images use loading="lazy" and object-fit: cover so they never stretch. -->
-      <section class="section section-alt reveal" id="projects" aria-labelledby="projects-title">
-        <div class="container">
-          <h2 id="projects-title" class="section-title">Projects</h2>
-          <div class="project-grid">
-            <article class="card project-card">
-              <div class="project-img">
-                <img src="assets/images/asadokz-practice-portfolio.png"alt="Screenshot of the Practice Portfolio website" width="1896" height="883" loading="lazy"/>
-              </div>
-              <div class="project-body">
-                <h3>Practice Portfolio</h3>
-                <p>A personal portfolio practice project developed to improve website structure, responsive design, UI development, and Vanilla JavaScript skills.</p>
-                <ul class="chips">
-                  <li>HTML5</li>
-                  <li>CSS3</li>
-                  <li>JavaScript</li>
-                </ul>
-                <div class="btn-row">
-                  <a class="btn btn-primary btn-sm" href="https://asadokz-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Live demo of Practice Portfolio (opens in a new tab)">
-                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="card project-card">
-              <div class="project-img">
-                <img src="assets/images/hostel-management.png" alt="Screenshot of the Hostel Management System" width="1000" height="667"loading="lazy"/>
-              </div>
-              <div class="project-body">
-                <h3>Hostel Management System</h3>
-                <p>A responsive Hostel Management System developed as a Final Year Project for managing hostel residents, rooms, fees, complaints, notices, and administrative operations.</p>
-                <ul class="chips">
-                  <li>HTML</li>
-                  <li>CSS</li>
-                  <li>JavaScript</li>
-                  <li>PHP</li>
-                  <li>MySQL</li>
-                </ul>
-                <div class="btn-row">
-                  <a class="btn btn-primary btn-sm" href="https://final-year-project-bice-chi.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Live demo of Hostel Management System (opens in a new tab)">
-                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="card project-card">
-              <div class="project-img">
-                <img src="assets/images/amazon-clone.png" alt="Screenshot of the Amazon Home Page Clone" width="1000" height="500" loading="lazy"/>
-              </div>
-              <div class="project-body">
-                <h3>Amazon Home Page Clone</h3>
-                <p>A responsive practice project recreating the layout and user interface of an Amazon-style home page using front-end technologies.</p>
-                <ul class="chips">
-                  <li>HTML5</li>
-                  <li>CSS3</li>
-                  <li>JavaScript</li>
-                </ul>
-                <div class="btn-row">
-                  <a class="btn btn-primary btn-sm" href="https://amazonhomepageclone-omega.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Live demo of Amazon Home Page Clone (opens in a new tab)">
-                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="card project-card">
-              <div class="project-img">
-                <img src="assets/images/html-css-practice.png" alt="Screenshot of the HTML and CSS practice project" width="1000" height="500" loading="lazy" />
-              </div>
-              <div class="project-body">
-                <h3>HTML &amp; CSS Practice</h3>
-                <p>A collection of front-end practice work created to improve HTML structure, CSS styling, layouts, and responsive design skills.</p>
-                <ul class="chips">
-                  <li>HTML5</li>
-                  <li>CSS3</li>
-                </ul>
-                <div class="btn-row">
-                  <a class="btn btn-primary btn-sm" href="https://mypracticeproject.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Live demo of HTML and CSS Practice (opens in a new tab)">
-                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="card project-card">
-              <div class="project-img">
-                <img src="assets/images/css-transform.png" alt="Screenshot of the CSS Transform Practice project" width="1000" height="500" loading="lazy"/>
-              </div>
-              <div class="project-body">
-                <h3>CSS Transform Practice</h3>
-                <p>A front-end practice project demonstrating CSS transforms, animations, transitions, positioning, and visual effects. </p>
-                <ul class="chips">
-                  <li>HTML5</li>
-                  <li>CSS3</li>
-                </ul>
-                <div class="btn-row">
-                    <a class="btn btn-primary btn-sm" href="https://transform-practice.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Live demo of CSS Transform Practice (opens in a new tab)">
-                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live Demo
-                    </a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Notes / Learning Resources Section
+    <!-- Notes / Learning Resources Section
         "View Note" opens the PDF in a modal (handled in script.js).
         "Download" is a normal download link.-->
-      <section class="section reveal" id="notes" aria-labelledby="notes-title">
-        <div class="container">
-          <h2 id="notes-title" class="section-title">Notes &amp; Learning Resources</h2>
-          <div class="notes-grid">
-            <article class="card note-card">
-              <i class="fa-brands fa-html5 note-icon" aria-hidden="true"></i>
-              <h3>HTML Notes</h3>
-              <p>Beginner-friendly HTML5 notes covering important concepts,elements, structure, forms, semantic HTML, and common practices.</p>
-              <div class="btn-row">
-                <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/html-notes.pdf" data-note-title="HTML Notes">
-                  <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
-                </button>
-                <a class="btn btn-outline btn-sm" href="assets/notes/html-notes.pdf" download>
-                  <i class="fa-solid fa-download" aria-hidden="true"></i>Download
-                </a>
-              </div>
-            </article>
-
-            <article class="card note-card">
-              <i class="fa-brands fa-css3-alt note-icon" aria-hidden="true"></i>
-              <h3>CSS Notes</h3>
-              <p>Beginner-friendly CSS notes covering selectors, box model,layouts, Flexbox, responsive design, positioning, animations,and other important concepts.</p>
-              <div class="btn-row">
-                <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/css-notes.pdf" data-note-title="CSS Notes">
-                  <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
-                </button>
-                <a class="btn btn-outline btn-sm" href="assets/notes/css-notes.pdf" download>
-                  <i class="fa-solid fa-download" aria-hidden="true"></i>Download
-                </a>
-              </div>
-            </article>
-
-            <article class="card note-card">
-              <i class="fa-brands fa-js note-icon" aria-hidden="true"></i>
-              <h3>JavaScript Notes</h3>
-              <p>Beginner-friendly JavaScript notes covering variables, functions, arrays, objects, loops, DOM manipulation, events, and modern JavaScript concepts.</p>
-              <div class="btn-row">
-                <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/javascript-notes.pdf" data-note-title="JavaScript Notes">
-                  <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
-                </button>
-                <a class="btn btn-outline btn-sm" href="assets/notes/javascript-notes.pdf" download>
-                  <i class="fa-solid fa-download" aria-hidden="true"></i>Download
-                </a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!--Resume Section
-        A short summary with a Download CV button.-->
-      <section class="section section-alt reveal" id="resume" aria-labelledby="resume-title">
-        <div class="container">
-          <div class="card resume-card">
-            <div>
-              <h2 id="resume-title" class="section-title section-title-left">Resume</h2>
-              <p>BS Computer Science (2022–2026) with hands-on training in Python, and Web Development. Download my CV for the full details.</p>
-            </div>
+    <section class="section reveal" id="notes" aria-labelledby="notes-title">
+      <div class="container">
+        <h2 id="notes-title" class="section-title">Notes &amp; Learning Resources</h2>
+        <div class="notes-grid">
+          <article class="card note-card">
+            <i class="fa-brands fa-html5 note-icon" aria-hidden="true"></i>
+            <h3>HTML Notes</h3>
+            <p>Beginner-friendly HTML5 notes covering important concepts,elements, structure, forms, semantic HTML, and
+              common practices.</p>
             <div class="btn-row">
-              <a class="btn btn-primary" href="assets/cv/Asad_Ullah_Resume.pdf" download >
-                <i class="fa-solid fa-download" aria-hidden="true"></i>Download CV
-              </a>
-              <a class="btn btn-outline" href="assets/cv/Asad_Ullah_Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View CV in a new tab">
-                <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>View CV
+              <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/html-notes.pdf"
+                data-note-title="HTML Notes">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
+              </button>
+              <a class="btn btn-outline btn-sm" href="assets/notes/html-notes.pdf" download>
+                <i class="fa-solid fa-download" aria-hidden="true"></i>Download
               </a>
             </div>
+          </article>
+
+          <article class="card note-card">
+            <i class="fa-brands fa-css3-alt note-icon" aria-hidden="true"></i>
+            <h3>CSS Notes</h3>
+            <p>Beginner-friendly CSS notes covering selectors, box model,layouts, Flexbox, responsive design,
+              positioning, animations,and other important concepts.</p>
+            <div class="btn-row">
+              <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/css-notes.pdf"
+                data-note-title="CSS Notes">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
+              </button>
+              <a class="btn btn-outline btn-sm" href="assets/notes/css-notes.pdf" download>
+                <i class="fa-solid fa-download" aria-hidden="true"></i>Download
+              </a>
+            </div>
+          </article>
+
+          <article class="card note-card">
+            <i class="fa-brands fa-js note-icon" aria-hidden="true"></i>
+            <h3>JavaScript Notes</h3>
+            <p>Beginner-friendly JavaScript notes covering variables, functions, arrays, objects, loops, DOM
+              manipulation, events, and modern JavaScript concepts.</p>
+            <div class="btn-row">
+              <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/javascript-notes.pdf"
+                data-note-title="JavaScript Notes">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
+              </button>
+              <a class="btn btn-outline btn-sm" href="assets/notes/javascript-notes.pdf" download>
+                <i class="fa-solid fa-download" aria-hidden="true"></i>Download
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!--Resume Section
+        A short summary with a Download CV button.-->
+    <section class="section section-alt reveal" id="resume" aria-labelledby="resume-title">
+      <div class="container">
+        <div class="card resume-card">
+          <div>
+            <h2 id="resume-title" class="section-title section-title-left">Resume</h2>
+            <p>BS Computer Science (2022–2026) with hands-on training in Python, and Web Development. Download my CV for
+              the full details.</p>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="assets/cv/Asad_Ullah_Resume.pdf" download>
+              <i class="fa-solid fa-download" aria-hidden="true"></i>Download CV
+            </a>
+            <a class="btn btn-outline" href="assets/cv/Asad_Ullah_Resume.pdf" target="_blank" rel="noopener noreferrer"
+              aria-label="View CV in a new tab">
+              <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>View CV
+            </a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-       <!-- Contact Section
+    <!-- Contact Section
         Static form: it validates in the browser and then opens the visitor's
         email app (mailto). Nothing is sent to or stored on a server.-->
-      <section class="section reveal" id="contact" aria-labelledby="contact-title">
-        <div class="container">
-          <h2 id="contact-title" class="section-title">Contact</h2>
-          <div class="contact-grid">
-            <div class="contact-info">
-              <p>Have a question, an internship or job opportunity, or just want to say hello? Fill in the form or reach me through any of theselinks.</p>
-              <ul class="contact-links">
-                <li>
-                  <a href="mailto:asadokz18@gmail.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i>asadokz18@gmail.com</a>
-                </li>
-                <li>
-                  <a href="https://linkedin.com/in/asadokz18" target="_blank" rel="noopener noreferrer"aria-label="LinkedIn: asadokz18 (opens in a new tab)">
-                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>asadokz18
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/asadokz18"target="_blank" rel="noopener noreferrer"aria-label="GitHub: asadokz18 (opens in a new tab)">
-                    <i class="fa-brands fa-github" aria-hidden="true"></i>asadokz18
-                    </a>
-                </li>
-                <li>
-                  <a href="https://facebook.com/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Facebook: asadokz18 (opens in a new tab)">
-                    <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>asadokz18
-                    </a>
-                </li>
-                <li>
-                  <a href="https://instagram.com/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Instagram: asadokz18 (opens in a new tab)">
-                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>asadokz18
-                    </a>
-                </li>
-              </ul>
-            </div>
-
-            <form id="contact-form" class="card contact-form" novalidate>
-              <div class="field">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" autocomplete="name"required aria-describedby="name-error"/>
-                <p class="field-error" id="name-error" role="alert"></p>
-              </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error"/>
-                <p class="field-error" id="email-error" role="alert"></p>
-              </div>
-              <div class="field">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" required aria-describedby="subject-error" />
-                <p class="field-error" id="subject-error" role="alert"></p>
-              </div>
-              <div class="field">
-                <label for="message">Message<span class="hint">(at least 20 characters)</span></label>
-                <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
-                <p class="field-error" id="message-error" role="alert"></p>
-              </div>
-              <button class="btn btn-primary" type="submit">
-                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Send Message
-              </button>
-              <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-              <p class="form-note">This opens your email app with the message ready to send. Nothing is stored on this website.</p>
-            </form>
+    <section class="section reveal" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 id="contact-title" class="section-title">Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p>Have a question, an internship or job opportunity, or just want to say hello? Fill in the form or reach
+              me through any of theselinks.</p>
+            <ul class="contact-links">
+              <li>
+                <a href="mailto:asadokz18@gmail.com"><i class="fa-solid fa-envelope"
+                    aria-hidden="true"></i>asadokz18@gmail.com</a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/asadokz18" target="_blank" rel="noopener noreferrer"
+                  aria-label="LinkedIn: asadokz18 (opens in a new tab)">
+                  <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>asadokz18
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/asadokz18" target="_blank" rel="noopener noreferrer"
+                  aria-label="GitHub: asadokz18 (opens in a new tab)">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>asadokz18
+                </a>
+              </li>
+              <li>
+                <a href="https://facebook.com/asadokz18" target="_blank" rel="noopener noreferrer"
+                  aria-label="Facebook: asadokz18 (opens in a new tab)">
+                  <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>asadokz18
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/asadokz18" target="_blank" rel="noopener noreferrer"
+                  aria-label="Instagram: asadokz18 (opens in a new tab)">
+                  <i class="fa-brands fa-instagram" aria-hidden="true"></i>asadokz18
+                </a>
+              </li>
+            </ul>
           </div>
-        </div>
-      </section>
-    </main>
 
-    <!--Footer -->
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <p class="footer-name">Asad Ullah</p>
-          <p>Web Developer</p>
-          <p class="username">@asadokz18</p>
+          <form id="contact-form" class="card contact-form" novalidate>
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="name-error" />
+              <p class="field-error" id="name-error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required
+                aria-describedby="email-error" />
+              <p class="field-error" id="email-error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" required aria-describedby="subject-error" />
+              <p class="field-error" id="subject-error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="message">Message<span class="hint">(at least 20 characters)</span></label>
+              <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
+              <p class="field-error" id="message-error" role="alert"></p>
+            </div>
+            <button class="btn btn-primary" type="submit">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Send Message
+            </button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            <p class="form-note">This opens your email app with the message ready to send. Nothing is stored on this
+              website.</p>
+          </form>
         </div>
-        <nav aria-label="Footer navigation">
-          <ul class="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-        <ul class="social-list" aria-label="Social media links">
-          <li>
-            <a href="https://linkedin.com/in/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Asad Ullah on LinkedIn (opens in a new tab)">
-              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Asad Ullah on GitHub (opens in a new tab)">
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://facebook.com/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Asad Ullah on Facebook (opens in a new tab)">
-              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/asadokz18" target="_blank" rel="noopener noreferrer" aria-label="Asad Ullah on Instagram (opens in a new tab)">
-                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-            </a>
-          </li>
+      </div>
+    </section>
+  </main>
+
+  <!--Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-name">Asad Ullah</p>
+        <p>Web Developer</p>
+        <p class="username">@asadokz18</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-      </div>
-      <p class="copyright">&copy; <span id="year">2026</span> Asad Ullah. All Rights Reserved.</p>
-    </footer>
+      </nav>
+      <ul class="social-list" aria-label="Social media links">
+        <li>
+          <a href="https://linkedin.com/in/asadokz18" target="_blank" rel="noopener noreferrer"
+            aria-label="Asad Ullah on LinkedIn (opens in a new tab)">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/asadokz18" target="_blank" rel="noopener noreferrer"
+            aria-label="Asad Ullah on GitHub (opens in a new tab)">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://facebook.com/asadokz18" target="_blank" rel="noopener noreferrer"
+            aria-label="Asad Ullah on Facebook (opens in a new tab)">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/asadokz18" target="_blank" rel="noopener noreferrer"
+            aria-label="Asad Ullah on Instagram (opens in a new tab)">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <p class="copyright">&copy; <span id="year">2026</span> Asad Ullah. All Rights Reserved.</p>
+  </footer>
 
-    <!-- Back-to-top button (shown after scrolling past the hero) -->
-    <button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>
-      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
-    </button>
+  <!-- Back-to-top button (shown after scrolling past the hero) -->
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
 
-    <!-- Note viewer modal Uses the native <dialog> element, which gives us Escape-to-close,
+  <!-- Note viewer modal Uses the native <dialog> element, which gives us Escape-to-close,
     focus trapping and a backdrop for free. -->
-    
-    <dialog id="note-modal" class="note-modal" aria-labelledby="note-modal-title">
-      <div class="modal-head">
-        <h2 id="note-modal-title">Note</h2>
-        <button class="icon-btn" id="note-close" type="button" aria-label="Close note viewer" >
-          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-        </button>
-      </div>
-      <iframe id="note-frame" class="modal-frame" title="Note PDF viewer"></iframe>
-      <p class="modal-foot">Can't see the PDF?
-        <a id="note-fallback" href="#" target="_blank" rel="noopener noreferrer">Open it in a new tab</a>.
-      </p>
-    </dialog>
-  </body>
+
+  <dialog id="note-modal" class="note-modal" aria-labelledby="note-modal-title">
+    <div class="modal-head">
+      <h2 id="note-modal-title">Note</h2>
+      <button class="icon-btn" id="note-close" type="button" aria-label="Close note viewer">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <iframe id="note-frame" class="modal-frame" title="Note PDF viewer"></iframe>
+    <p class="modal-foot">Can't see the PDF?
+      <a id="note-fallback" href="#" target="_blank" rel="noopener noreferrer">Open it in a new tab</a>.
+    </p>
+  </dialog>
+</body>
+
 </html>

@@ -22,6 +22,8 @@ The website is built **entirely with HTML5, CSS3, and Vanilla JavaScript**. Ther
 - Skills section that clearly separates **Current Skills** from **Currently Learning** (no fake percentages)
 - Development Journey timeline (5 modules)
 - Project grid with lazy-loaded images (3 columns on desktop, 2 on tablet, 1 on mobile)
+- Interactive project filtering by category: **All**, **JavaScript**, **MERN Stack**, **React Native**, **PHP, SQL**, and **HTML & CSS**
+- Dynamic 6-project view limit with a smooth **Show More Projects** / **Show Less Projects** toggle button
 - Notes section: **View Note** opens the PDF in an accessible modal, **Download** saves it
 - Resume section and **Download CV** buttons
 - Contact form with client-side validation (required fields, email format, minimum message length)
@@ -74,7 +76,7 @@ No installation or server is required. An internet connection is needed only to 
 | Colors (light and dark) | `style.css` — section **1. COLORS** at the top. Variables are used for colors only. |
 | Skills | `index.html` — Skills section (`<ul class="chips">` lists) |
 | Journey modules | `index.html` — Development Journey section |
-| Projects | `index.html` — copy a `<article class="project-card">` block, then change the image, title, text, tags, and link. Put the screenshot in `assets/images/`. |
+| Projects & Filters | `index.html` — copy a `<article class="project-card">` block, assign `data-category="..."` (such as `javascript`, `mern`, `react-native`, `php-sql`, `html-css`), then change the image, title, text, tags, and link. The page initially displays 6 projects, with the "Show More Projects" button appearing automatically if more than 6 projects are present. |
 | Notes | Replace the PDFs in `assets/notes/`, or add a new `.note-card` with `data-note-src` pointing to the PDF |
 | CV | Replace `assets/cv/Asad_Ullah_Resume.pdf` (keep the same file name) |
 | Profile photo / logo | Replace `assets/images/profile.png` and `assets/images/logo.svg` |
