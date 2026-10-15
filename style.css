@@ -7,8 +7,8 @@
    3. Layout helpers & buttons
    4. Header & navigation
    5. Hero
-   6. Sections (About, Skills, Journey, Projects, Notes, Resume, Contact)
-   7. Footer, back-to-top, modal
+   6. Sections (About, Skills, Journey, Projects, Resume, Contact)
+   7. Footer, back-to-top
    8. Animations
    9. Responsive breakpoints
 
@@ -75,10 +75,6 @@ body {
   background-color: var(--background-color);
   overflow-x: hidden; /* safety net against horizontal scrolling */
 }
-
-body.no-scroll {
-  overflow: hidden;
-} /* added while the note modal is open */
 
 img {
   display: block;
@@ -902,38 +898,6 @@ textarea,
   transform: rotate(180deg) translateY(2px);
 }
 
-/* ---- Notes ---- */
-.notes-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.6rem;
-}
-.note-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding: 1.5rem;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-.note-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px var(--shadow-color);
-}
-.note-icon {
-  font-size: 2.2rem;
-  color: var(--primary-color);
-}
-.note-card p {
-  color: var(--muted-text-color);
-  font-size: 0.97rem;
-}
-.note-card .btn-row {
-  margin-top: auto;
-  padding-top: 0.4rem;
-}
-
 /* ---- Resume ---- */
 .resume-card {
   display: flex;
@@ -1046,7 +1010,7 @@ textarea,
 }
 
 /* ==========================================================================
-   7. FOOTER, BACK-TO-TOP, MODAL
+   7. FOOTER, BACK-TO-TOP
    ========================================================================== */
 .site-footer {
   padding: 3rem 0 1.5rem;
@@ -1114,52 +1078,6 @@ textarea,
 }
 .to-top[hidden] {
   display: none;
-}
-
-/* Note modal (native <dialog>) */
-.note-modal {
-  width: min(960px, 94vw);
-  height: 90vh;
-  max-width: none;
-  max-height: none;
-  padding: 0;
-  color: var(--text-color);
-  background-color: var(--card-color);
-  border: 1px solid var(--border-color);
-  border-radius: 14px;
-  box-shadow: 0 24px 60px var(--shadow-color);
-}
-.note-modal[open] {
-  display: flex;
-  flex-direction: column;
-  animation: modalIn 0.25s ease;
-}
-.note-modal::backdrop {
-  background: rgba(2, 6, 23, 0.65);
-}
-.modal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid var(--border-color);
-}
-.modal-head h2 {
-  font-size: 1.15rem;
-}
-.modal-frame {
-  flex: 1;
-  width: 100%;
-  border: 0;
-  background: #ffffff;
-}
-.modal-foot {
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-  text-align: center;
-  color: var(--muted-text-color);
-  border-top: 1px solid var(--border-color);
 }
 
 /* ==========================================================================
@@ -1233,12 +1151,6 @@ textarea,
 .info-icon {
   transition: transform 0.25s ease;
 }
-.note-card:hover .note-icon {
-  transform: scale(1.15) rotate(-6deg);
-}
-.note-icon {
-  transition: transform 0.25s ease;
-}
 .skill-card:hover h4 i {
   animation: pop 0.5s ease;
 }
@@ -1301,17 +1213,6 @@ textarea,
     transform: scale(1.35);
   }
 }
-@keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 /* Scroll reveal: sections start hidden (only when JS is running) and
    script.js adds .visible when they scroll into view. */
 .js .reveal {
@@ -1384,10 +1285,9 @@ textarea,
    Written desktop-first: each block overrides the layout for smaller screens.
    ========================================================================== */
 
-/* Laptop / small desktop and below: 2-column project & notes grids */
+/* Laptop / small desktop and below: 2-column project grid */
 @media (max-width: 1024px) {
-  .project-grid,
-  .notes-grid {
+  .project-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .hero-grid {
@@ -1466,8 +1366,7 @@ textarea,
   .section {
     padding: 3.2rem 0;
   }
-  .project-grid,
-  .notes-grid {
+  .project-grid {
     grid-template-columns: 1fr;
   }
   .projects-filter-bar {
@@ -1500,11 +1399,6 @@ textarea,
   }
   .brand-name {
     font-size: 1rem;
-  }
-  .note-modal {
-    width: 100vw;
-    height: 100dvh;
-    border-radius: 0;
   }
 }
 

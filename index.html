@@ -72,7 +72,7 @@
           <li><a href="#skills">Skills</a></li>
           <li><a href="#journey">Journey</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#notes">Notes</a></li>
+          <li><a href="notes.html">Notes</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -478,68 +478,11 @@
         </div>
 
         <div class="projects-actions">
-          <button id="show-more-projects-btn" class="btn btn-outline" type="button" aria-expanded="false" aria-controls="project-grid">
+          <button id="show-more-projects-btn" class="btn btn-outline" type="button" aria-expanded="false"
+            aria-controls="project-grid">
             <span class="btn-text">Show More Projects</span>
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Notes / Learning Resources Section
-        "View Note" opens the PDF in a modal (handled in script.js).
-        "Download" is a normal download link.-->
-    <section class="section reveal" id="notes" aria-labelledby="notes-title">
-      <div class="container">
-        <h2 id="notes-title" class="section-title">Notes &amp; Learning Resources</h2>
-        <div class="notes-grid">
-          <article class="card note-card">
-            <i class="fa-brands fa-html5 note-icon" aria-hidden="true"></i>
-            <h3>HTML Notes</h3>
-            <p>Beginner-friendly HTML5 notes covering important concepts,elements, structure, forms, semantic HTML, and
-              common practices.</p>
-            <div class="btn-row">
-              <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/html-notes.pdf"
-                data-note-title="HTML Notes">
-                <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
-              </button>
-              <a class="btn btn-outline btn-sm" href="assets/notes/html-notes.pdf" download>
-                <i class="fa-solid fa-download" aria-hidden="true"></i>Download
-              </a>
-            </div>
-          </article>
-
-          <article class="card note-card">
-            <i class="fa-brands fa-css3-alt note-icon" aria-hidden="true"></i>
-            <h3>CSS Notes</h3>
-            <p>Beginner-friendly CSS notes covering selectors, box model,layouts, Flexbox, responsive design,
-              positioning, animations,and other important concepts.</p>
-            <div class="btn-row">
-              <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/css-notes.pdf"
-                data-note-title="CSS Notes">
-                <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
-              </button>
-              <a class="btn btn-outline btn-sm" href="assets/notes/css-notes.pdf" download>
-                <i class="fa-solid fa-download" aria-hidden="true"></i>Download
-              </a>
-            </div>
-          </article>
-
-          <article class="card note-card">
-            <i class="fa-brands fa-js note-icon" aria-hidden="true"></i>
-            <h3>JavaScript Notes</h3>
-            <p>Beginner-friendly JavaScript notes covering variables, functions, arrays, objects, loops, DOM
-              manipulation, events, and modern JavaScript concepts.</p>
-            <div class="btn-row">
-              <button class="btn btn-primary btn-sm" type="button" data-note-src="assets/notes/javascript-notes.pdf"
-                data-note-title="JavaScript Notes">
-                <i class="fa-solid fa-eye" aria-hidden="true"></i>View Note
-              </button>
-              <a class="btn btn-outline btn-sm" href="assets/notes/javascript-notes.pdf" download>
-                <i class="fa-solid fa-download" aria-hidden="true"></i>Download
-              </a>
-            </div>
-          </article>
         </div>
       </div>
     </section>
@@ -656,6 +599,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="notes.html">Notes</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -693,22 +637,6 @@
   <button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>
     <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
   </button>
-
-  <!-- Note viewer modal Uses the native <dialog> element, which gives us Escape-to-close,
-    focus trapping and a backdrop for free. -->
-
-  <dialog id="note-modal" class="note-modal" aria-labelledby="note-modal-title">
-    <div class="modal-head">
-      <h2 id="note-modal-title">Note</h2>
-      <button class="icon-btn" id="note-close" type="button" aria-label="Close note viewer">
-        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-      </button>
-    </div>
-    <iframe id="note-frame" class="modal-frame" title="Note PDF viewer"></iframe>
-    <p class="modal-foot">Can't see the PDF?
-      <a id="note-fallback" href="#" target="_blank" rel="noopener noreferrer">Open it in a new tab</a>.
-    </p>
-  </dialog>
 </body>
 
 </html>

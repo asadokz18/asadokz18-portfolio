@@ -162,59 +162,8 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-
     /* ----------------------------------------------------------------------
-       6. NOTE VIEWER MODAL
-       Buttons with data-note-src open the PDF inside a native <dialog>:
-         - showModal() makes the page behind inert, traps keyboard focus,
-           and closes on Escape automatically.
-         - Clicking the dark backdrop closes it (we check that the click
-           landed on the <dialog> itself, not on its content).
-         - A "no-scroll" class on <body> stops the page scrolling behind it.
-         - The PDF is shown with the browser's built-in viewer in an <iframe>.
-           Some mobile browsers cannot show PDFs inline, so there is always an
-           "Open it in a new tab" link as a fallback.
-       ---------------------------------------------------------------------- */
-    function initNoteModal() {
-        var modal = document.getElementById('note-modal');
-        if (!modal || typeof modal.showModal !== 'function') return;
-
-        var title = document.getElementById('note-modal-title');
-        var frame = document.getElementById('note-frame');
-        var fallback = document.getElementById('note-fallback');
-        var closeButton = document.getElementById('note-close');
-
-        function openNote(src, noteTitle) {
-            title.textContent = noteTitle;
-            frame.title = noteTitle + ' (PDF viewer)';
-            frame.src = src;           // the PDF only loads when the modal is opened
-            fallback.href = src;
-            document.body.classList.add('no-scroll');
-            modal.showModal();
-            closeButton.focus();
-        }
-
-        // Fires however the dialog closes (button, Escape, or backdrop click)
-        modal.addEventListener('close', function () {
-            frame.removeAttribute('src');   // stop loading the PDF
-            document.body.classList.remove('no-scroll');
-        });
-
-        document.querySelectorAll('[data-note-src]').forEach(function (button) {
-            button.addEventListener('click', function () {
-                openNote(button.dataset.noteSrc, button.dataset.noteTitle);
-            });
-        });
-
-        closeButton.addEventListener('click', function () { modal.close(); });
-
-        modal.addEventListener('click', function (event) {
-            if (event.target === modal) modal.close();   // click on the backdrop
-        });
-    }
-
-    /* ----------------------------------------------------------------------
-       7. CONTACT FORM VALIDATION
+       6. CONTACT FORM VALIDATION
        The site has no server, so the form cannot store or send anything.
        Steps:
          1. On submit, stop the browser's default behavior.
@@ -297,7 +246,7 @@
     }
 
     /* ----------------------------------------------------------------------
-       8. TYPING EFFECT (hero)
+       7. TYPING EFFECT (hero)
        Types a word one letter at a time, waits, deletes it, then moves on to
        the next word. One setTimeout call schedules the next step, so the
        speed can differ for typing, deleting, and pausing.
@@ -340,7 +289,7 @@
     }
 
     /* ----------------------------------------------------------------------
-       9. FOOTER YEAR
+       8. FOOTER YEAR
        Writes the current year so the copyright never goes out of date.
        ---------------------------------------------------------------------- */
     function setCopyrightYear() {
@@ -349,7 +298,7 @@
     }
 
     /* ----------------------------------------------------------------------
-       10. PROJECTS FILTER & SHOW MORE / LESS
+       9. PROJECTS FILTER & SHOW MORE / LESS
        Filters project cards by category (All, JavaScript, Full Stack,
        HTML & CSS) and limits the visible matching cards to 6 initially.
        Visitors can click "Show More Projects" to see all matches.
@@ -487,7 +436,6 @@
         initActiveNav();
         initScrollReveal();
         initBackToTop();
-        initNoteModal();
         initContactForm();
         initTypingEffect();
         setCopyrightYear();
