@@ -40,6 +40,11 @@
   --css-accent: #1572b6;
   --js-accent: #eab308;
   --web-accent: #0284c7;
+  --git-accent: #f05032;
+  --react-accent: #61dafb;
+  --node-accent: #539e43;
+  --express-accent: #868686;
+  --mongo-accent: #4db33d;
 }
 
 :root[data-theme="dark"] {
@@ -62,6 +67,11 @@
   --css-accent: #38bdf8;
   --js-accent: #facc15;
   --web-accent: #38bdf8;
+  --git-accent: #ff7a5a;
+  --react-accent: #7ee8fa;
+  --node-accent: #6dd447;
+  --express-accent: #b0b0b0;
+  --mongo-accent: #6ee86e;
 }
 
 /* ==========================================================================
@@ -762,6 +772,11 @@ input,
 .icon-css { color: var(--css-accent); }
 .icon-js { color: var(--js-accent); }
 .icon-web { color: var(--web-accent); }
+.icon-git { color: var(--git-accent); }
+.icon-react { color: var(--react-accent); }
+.icon-node { color: var(--node-accent); }
+.icon-express { color: var(--express-accent); }
+.icon-mongo { color: var(--mongo-accent); }
 
 .note-badges-wrapper {
   display: flex;
