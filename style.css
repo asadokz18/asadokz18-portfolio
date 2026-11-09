@@ -1022,6 +1022,16 @@ textarea,
 .footer-name {
   font-size: 1.25rem;
   font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.site-footer .brand {
+  display: inline-flex;
+  margin-bottom: 0.6rem;
+}
+
+.site-footer .brand:hover .brand-name {
+  color: var(--primary-color);
 }
 
 .site-footer .username {
@@ -1475,7 +1485,7 @@ textarea,
     grid-template-columns: 1fr;
   }
 
-  .brand-name {
+  .site-header .brand-name {
     display: none;
   }
 
