@@ -1034,8 +1034,16 @@ textarea,
   color: var(--primary-color);
 }
 
+.footer-desc {
+  margin-top: 0.6rem;
+  color: var(--muted-text-color);
+  font-size: 0.94rem;
+  max-width: 320px;
+  line-height: 1.6;
+}
+
 .site-footer .username {
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
 }
 
 .footer-links {
