@@ -45,6 +45,7 @@
   --node-accent: #539e43;
   --express-accent: #868686;
   --mongo-accent: #4db33d;
+  --seo-accent: #059669;
 }
 
 :root[data-theme="dark"] {
@@ -72,6 +73,7 @@
   --node-accent: #6dd447;
   --express-accent: #b0b0b0;
   --mongo-accent: #6ee86e;
+  --seo-accent: #34d399;
 }
 
 /* ==========================================================================
@@ -777,6 +779,7 @@ input,
 .icon-node { color: var(--node-accent); }
 .icon-express { color: var(--express-accent); }
 .icon-mongo { color: var(--mongo-accent); }
+.icon-seo { color: var(--seo-accent); }
 
 .note-badges-wrapper {
   display: flex;

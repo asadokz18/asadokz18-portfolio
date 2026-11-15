@@ -259,8 +259,10 @@
 
         var words = [
             'Frontend Development',
+            'SEO Optimization',
             'Responsive Websites',
             'Full Stack Development',
+            'Technical SEO & Core Web Vitals',
             '@asadokz18'
         ];
         var wordIndex = 0;                    // which word we are on

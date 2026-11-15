@@ -1,11 +1,11 @@
-# Asad Ullah — Web Developer Portfolio
+# Asad Ullah — Web Developer & SEO Specialist Portfolio
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Font Awesome](https://img.shields.io/badge/Font_Awesome_6-528DD7?style=flat&logo=fontawesome&logoColor=white)](https://fontawesome.com)
 
-A **fully responsive personal portfolio website** for **Asad Ullah**, a Computer Science graduate (BS Computer Science 2022–2026) and Web Developer. It showcases his skills, learning journey, projects, study notes, resume, and contact details.
+A **fully responsive personal portfolio website** for **Asad Ullah**, a Computer Science graduate (BS Computer Science 2022–2026), Web Developer, and SEO Specialist. It showcases his services, skills, development journey, projects, handwritten study notes, resume, and contact details.
 
 Built **entirely with HTML5, CSS3, and Vanilla JavaScript** — no frameworks, no CSS libraries, no build tools. The only external dependency is **Font Awesome 6**, loaded from a CDN.
 
@@ -44,12 +44,13 @@ Built **entirely with HTML5, CSS3, and Vanilla JavaScript** — no frameworks, n
 - Social links (LinkedIn, GitHub, Facebook, Instagram)
 
 ### Sections
-- **About** — short biography and four quick-fact info cards
-- **Skills** — split into *Current Skills* and *Currently Learning* (no fake progress bars or percentages)
-- **Development Journey** — vertical 5-module timeline
+- **About** — short biography and four quick-fact info cards (Education, Certifications, Focus, Location)
+- **Services** — 6 dedicated service offerings across Web Development, On-Page & Off-Page SEO, Technical SEO & Core Web Vitals, Keyword Research, Full-Stack & APIs, and Website Audits
+- **Skills** — split into *Current Skills* (Front-End, SEO & Optimization, Python & Algorithms, Databases, Tools) and *Currently Learning* (Node.js, Express, MongoDB Aggregation, React, React Native)
+- **Development Journey** — vertical 6-module timeline mapping learning from Web Design to SEO, Backend, and Mobile
 - **Projects** — responsive grid with lazy-loaded images and category filtering
 - **Resume** — one-click Download CV and View CV (PDF)
-- **Contact** — client-side validated form that opens the visitor's email app via `mailto:`
+- **Contact** — client-side validated form with mailto, direct WhatsApp link, and social profiles
 
 ### Projects Grid
 - 3 columns on desktop · 2 on tablet · 1 on mobile
@@ -59,9 +60,10 @@ Built **entirely with HTML5, CSS3, and Vanilla JavaScript** — no frameworks, n
 
 ### Notes Page (`notes.html`)
 - Dedicated page with its own `notes.css` and `notes.js`
+- 10 comprehensive study guides including newly added **SEO Master Notes**
 - Instant PDF preview in a modal (no page reload)
-- Live search across note titles
-- Category filtering
+- Live search across note titles and topics
+- Category filtering with live counts
 - Direct PDF download buttons
 
 ### Accessibility & SEO
@@ -79,9 +81,11 @@ asadokz18-portfolio/
 │
 ├── index.html          ← Main portfolio page
 ├── style.css           ← All styles for index.html
+├── contact.css         ← Styles for contact section
 ├── script.js           ← All JS for index.html (single IIFE, no globals)
+├── contact.js          ← Contact form logic
 │
-├── notes.html          ← Dedicated study-notes page
+├── notes.html          ← Dedicated study-notes page (10 study guides)
 ├── notes.css           ← Styles for notes.html
 ├── notes.js            ← Logic for notes.html
 │
@@ -95,13 +99,22 @@ asadokz18-portfolio/
     │   ├── amazon-clone.png
     │   ├── html-css-practice.png
     │   ├── asadokz-practice-portfolio.png
-    │   └── css-transform.png
+    │   ├── css-transform.png
+    │   ├── FATA_University_Hostel.png
+    │   ├── hackathon_smit.jpeg
+    │   └── muhammad-tariq.png
     │
     ├── notes/
     │   ├── HTML-Notes.pdf
     │   ├── CSS-Notes.pdf
     │   ├── JavaScript-Notes.pdf
-    │   └── Web-Development-basic-Notes.pdf
+    │   ├── Web-Development-basic-Notes.pdf
+    │   ├── Git-GitHub-Notes.pdf
+    │   ├── React-Notes.pdf
+    │   ├── NodeJS-Notes.pdf
+    │   ├── Express-Notes.pdf
+    │   ├── MongoDB-Notes.pdf
+    │   └── SEO-Notes.pdf
     │
     └── cv/
         └── Asad_Ullah_Resume.pdf

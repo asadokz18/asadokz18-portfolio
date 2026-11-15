@@ -22,7 +22,8 @@
   gap: 0.7rem;
 }
 
-.contact-links a {
+.contact-links a,
+.contact-links span {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
