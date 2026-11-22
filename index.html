@@ -100,6 +100,10 @@
     <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-text">
+          <div class="hero-status-pill">
+            <span class="status-indicator"></span>
+            <span>Looking for Job and Open to Collaboration</span>
+          </div>
           <p class="hero-hello">Hello, I'm</p>
           <h1 id="hero-title">Asad Ullah</h1>
           <p class="hero-role">Web Developer | SEO Specialist</p>
@@ -148,14 +152,23 @@
                 <i class="fa-brands fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
-            <span class="username">@asadokz18</span>
           </ul>
         </div>
 
         <figure class="hero-photo">
           <!-- Hero image is above the fold, so it is NOT lazy-loaded -->
-          <img src="assets/images/profile.png" alt="Portrait of Asad Ullah in a suit and tie" width="803"
-            height="1000" />
+          <div class="hero-photo-wrapper">
+            <img src="assets/images/profile.png" alt="Portrait of Asad Ullah in a suit and tie" width="803"
+              height="1000" />
+            <div class="hero-floating-badge badge-top" aria-hidden="true">
+              <i class="fa-solid fa-code"></i>
+              <span>Web Developer</span>
+            </div>
+            <div class="hero-floating-badge badge-bottom" aria-hidden="true">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>SEO Specialist</span>
+            </div>
+          </div>
         </figure>
       </div>
     </section>
@@ -172,7 +185,8 @@
               with a dedicated focus on Search Engine Optimization (SEO). Skilled in building responsive, user-friendly
               websites using HTML, CSS, and JavaScript, with growing experience in React, Node.js, and Express, and
               working knowledge of MySQL and MongoDB.</p>
-            <p>I uniquely combine web engineering with on-page, off-page, and technical SEO, Core Web Vitals optimization,
+            <p>I uniquely combine web engineering with on-page, off-page, and technical SEO, Core Web Vitals
+              optimization,
               and strategic keyword research to develop digital products that are lightning-fast, easy to navigate, and
               built to rank prominently on search engines.</p>
           </div>
@@ -206,7 +220,8 @@
     <section class="section section-alt reveal" id="services" aria-labelledby="services-title">
       <div class="container">
         <h2 id="services-title" class="section-title">Services</h2>
-        <p class="section-subtitle">Comprehensive web engineering and search engine optimization solutions tailored to elevate your online visibility and drive organic growth.</p>
+        <p class="section-subtitle">Comprehensive web engineering and search engine optimization solutions tailored to
+          elevate your online visibility and drive organic growth.</p>
 
         <div class="services-grid">
           <article class="card service-card">
@@ -215,7 +230,8 @@
             </div>
             <h3 class="service-title">Web Design &amp; Development</h3>
             <p class="service-desc">
-              Building custom, pixel-perfect, mobile-first responsive websites using HTML5, CSS3, and JavaScript. Focused on cross-device compatibility, modern UI architecture, and clean, accessible code.
+              Building custom, pixel-perfect, mobile-first responsive websites using HTML5, CSS3, and JavaScript.
+              Focused on cross-device compatibility, modern UI architecture, and clean, accessible code.
             </p>
             <ul class="chips">
               <li>Responsive Web Design</li>
@@ -231,7 +247,8 @@
             </div>
             <h3 class="service-title">Search Engine Optimization (SEO)</h3>
             <p class="service-desc">
-              Strategic On-Page and Off-Page SEO to maximize search engine rankings. Optimizing meta tags, URL structure, search intent alignment, internal linking, and high-authority link-building campaigns.
+              Strategic On-Page and Off-Page SEO to maximize search engine rankings. Optimizing meta tags, URL
+              structure, search intent alignment, internal linking, and high-authority link-building campaigns.
             </p>
             <ul class="chips">
               <li>On-Page SEO</li>
@@ -247,7 +264,8 @@
             </div>
             <h3 class="service-title">Technical SEO &amp; Core Web Vitals</h3>
             <p class="service-desc">
-              Auditing and configuring website infrastructure for flawless search engine crawlability and indexing. Optimizing Core Web Vitals (LCP, INP, CLS), XML sitemaps, robots.txt, and schema markup.
+              Auditing and configuring website infrastructure for flawless search engine crawlability and indexing.
+              Optimizing Core Web Vitals (LCP, INP, CLS), XML sitemaps, robots.txt, and schema markup.
             </p>
             <ul class="chips">
               <li>Crawlability &amp; Indexing</li>
@@ -263,7 +281,8 @@
             </div>
             <h3 class="service-title">Keyword Research &amp; Analytics</h3>
             <p class="service-desc">
-              In-depth search volume analysis, competitor keyword gap audits, and commercial intent mapping using Google Keyword Planner, Search Console, Ahrefs, and SEMrush to capture high-value visitors.
+              In-depth search volume analysis, competitor keyword gap audits, and commercial intent mapping using Google
+              Keyword Planner, Search Console, Ahrefs, and SEMrush to capture high-value visitors.
             </p>
             <ul class="chips">
               <li>Keyword Research</li>
@@ -279,7 +298,8 @@
             </div>
             <h3 class="service-title">Full-Stack &amp; API Development</h3>
             <p class="service-desc">
-              Designing scalable server-side solutions and RESTful APIs using Node.js and Express, integrated with MongoDB and MySQL databases for reliable data modeling, CRUD logic, and secure endpoints.
+              Designing scalable server-side solutions and RESTful APIs using Node.js and Express, integrated with
+              MongoDB and MySQL databases for reliable data modeling, CRUD logic, and secure endpoints.
             </p>
             <ul class="chips">
               <li>Node.js &amp; Express</li>
@@ -295,7 +315,8 @@
             </div>
             <h3 class="service-title">Website Audits &amp; Optimization</h3>
             <p class="service-desc">
-              Complete website health diagnostics uncovering broken links, duplicate content, mobile usability bottlenecks, and speed delays, accompanied by an actionable checklist to improve organic performance.
+              Complete website health diagnostics uncovering broken links, duplicate content, mobile usability
+              bottlenecks, and speed delays, accompanied by an actionable checklist to improve organic performance.
             </p>
             <ul class="chips">
               <li>Comprehensive Site Audits</li>
@@ -719,8 +740,10 @@
         <div class="card resume-card">
           <div>
             <h2 id="resume-title" class="section-title section-title-left">Resume</h2>
-            <p>BS Computer Science (2022–2026, CGPA: 3.43) with certifications in Python (NAVTTC Grade A+), Web &amp; Mobile
-              Development (SMIT), and proven expertise in Web Development &amp; SEO. Download my CV for full credentials.</p>
+            <p>BS Computer Science (2022–2026, CGPA: 3.43) with certifications in Python (NAVTTC Grade A+), Web &amp;
+              Mobile
+              Development (SMIT), and proven expertise in Web Development &amp; SEO. Download my CV for full
+              credentials.</p>
           </div>
           <div class="btn-row">
             <a class="btn btn-primary" href="assets/cv/Asad_Ullah_Resume.pdf" download>
