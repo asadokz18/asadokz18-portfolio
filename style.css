@@ -515,6 +515,16 @@ textarea,
   position: relative;
   overflow: hidden;
   padding: 4.5rem 0 4.8rem;
+  background-image:
+    linear-gradient(to right, rgba(30, 64, 175, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 64, 175, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+:root[data-theme="dark"] .hero {
+  background-image:
+    linear-gradient(to right, rgba(96, 165, 250, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(96, 165, 250, 0.04) 1px, transparent 1px);
 }
 
 /* Ambient glow blobs behind the hero */
@@ -554,6 +564,16 @@ textarea,
 
 :root[data-theme="dark"] .hero::after {
   background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+}
+
+/* Interactive Web & SEO Network Canvas */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-grid {
@@ -703,57 +723,188 @@ textarea,
 .hero-photo {
   position: relative;
   justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 360px;
   animation: heroPhotoIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) backwards;
   animation-delay: 0.3s;
+  perspective: 1200px;
+  perspective-origin: center center;
 }
 
 .hero-photo-wrapper {
   position: relative;
   display: inline-block;
   width: 100%;
-  animation: heroFloat 5.5s ease-in-out infinite;
+  animation: heroCard3DFloat 6.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Subtle breathing ambient studio backlight glow in 3D background */
+.photo-ambient-glow {
+  position: absolute;
+  inset: -16px;
+  border-radius: 38px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(30, 64, 175, 0.4) 0%,
+    rgba(245, 158, 11, 0.22) 48%,
+    transparent 72%
+  );
+  filter: blur(26px);
+  opacity: 0.75;
+  z-index: 0;
+  pointer-events: none;
+  transform: translateZ(-25px);
+  animation: ambientBreath 5s ease-in-out infinite;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+:root[data-theme="dark"] .photo-ambient-glow {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(96, 165, 250, 0.5) 0%,
+    rgba(251, 191, 36, 0.26) 48%,
+    transparent 75%
+  );
+  filter: blur(32px);
+  opacity: 0.9;
+}
+
+.hero-photo:hover .photo-ambient-glow {
+  opacity: 1;
+  filter: blur(34px);
+}
+
+/* Executive squircle card frame with gradient stroke elevated in 3D */
+.photo-card-frame {
+  position: relative;
+  border-radius: 26px;
+  padding: 3px;
+  background: linear-gradient(
+    145deg,
+    rgba(30, 64, 175, 0.6) 0%,
+    rgba(245, 158, 11, 0.5) 50%,
+    rgba(30, 64, 175, 0.2) 100%
+  );
+  box-shadow:
+    0 20px 45px var(--shadow-color),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+  overflow: hidden;
+  transform: translateZ(15px);
+  transform-style: preserve-3d;
+  transition: box-shadow 0.35s ease;
+}
+
+:root[data-theme="dark"] .photo-card-frame {
+  background: linear-gradient(
+    145deg,
+    rgba(96, 165, 250, 0.7) 0%,
+    rgba(251, 191, 36, 0.55) 50%,
+    rgba(96, 165, 250, 0.22) 100%
+  );
+}
+
+.hero-photo:hover .photo-card-frame {
+  box-shadow:
+    0 30px 60px var(--shadow-color),
+    0 0 35px rgba(30, 64, 175, 0.25);
 }
 
 .hero-photo img {
+  position: relative;
+  display: block;
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: top center;
-  border-radius: 20px;
-  border: 4px solid var(--card-color);
-  box-shadow:
-    0 0 0 3px var(--accent-color),
-    0 20px 45px var(--shadow-color);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border-radius: 23px;
+  background-color: var(--card-color);
+  transition: transform 0.4s ease;
 }
 
 .hero-photo:hover img {
   transform: scale(1.02);
-  box-shadow:
-    0 0 0 3px var(--primary-color),
-    0 25px 55px var(--shadow-color);
 }
 
-/* Floating interactive feature badges */
+/* Dynamic 3D interactive glass glare sheen that tracks the cursor */
+.photo-sheen-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 35%),
+    rgba(255, 255, 255, 0.38) 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    transparent 65%
+  );
+  z-index: 2;
+  pointer-events: none;
+  transform: translateZ(32px);
+  opacity: 0.6;
+  transition: opacity 0.35s ease;
+}
+
+.hero-photo:hover .photo-sheen-overlay {
+  opacity: 1;
+}
+
+/* Synchronized ground shadow that reacts to card levitation */
+.photo-ground-shadow {
+  width: 72%;
+  height: 18px;
+  margin-top: 14px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(15, 23, 42, 0.32) 0%,
+    rgba(15, 23, 42, 0.08) 50%,
+    transparent 75%
+  );
+  filter: blur(6px);
+  animation: shadowPulse3D 6.5s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity 0.3s ease;
+}
+
+:root[data-theme="dark"] .photo-ground-shadow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    transparent 75%
+  );
+  filter: blur(8px);
+}
+
+/* Floating interactive feature badges with dramatic 3D forward pop */
 .hero-floating-badge {
   position: absolute;
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.55rem 1rem;
+  padding: 0.6rem 1.05rem;
   background-color: var(--card-color);
   color: var(--text-color);
   border: 1px solid var(--border-color);
   border-radius: 999px;
-  box-shadow: 0 10px 24px var(--shadow-color);
+  box-shadow:
+    0 14px 28px var(--shadow-color),
+    0 2px 6px rgba(0, 0, 0, 0.08);
   font-size: 0.88rem;
   font-weight: 600;
   white-space: nowrap;
-  backdrop-filter: blur(8px);
-  z-index: 2;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(12px);
+  z-index: 4;
+  transform: translateZ(55px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-floating-badge i {
@@ -764,18 +915,21 @@ textarea,
 .badge-top {
   top: 18px;
   left: -22px;
-  animation: badgeFloat1 4.5s ease-in-out infinite alternate;
+  animation: badgeFloat3D1 5s ease-in-out infinite alternate;
 }
 
 .badge-bottom {
   bottom: 26px;
   right: -22px;
-  animation: badgeFloat2 5s ease-in-out infinite alternate;
+  animation: badgeFloat3D2 5.5s ease-in-out infinite alternate;
 }
 
 .hero-floating-badge:hover {
-  transform: scale(1.08);
+  transform: translateZ(75px) scale(1.1);
   border-color: var(--primary-color);
+  box-shadow:
+    0 20px 36px var(--shadow-color),
+    0 0 15px rgba(30, 64, 175, 0.25);
 }
 
 /* ==========================================================================
@@ -1566,6 +1720,78 @@ textarea,
   }
 }
 
+/* Profile photo 3D continuous oscillation & multi-axis float */
+@keyframes heroCard3DFloat {
+  0% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+
+  25% {
+    transform: translateY(-8px) rotateX(6deg) rotateY(-8deg) rotateZ(-1.5deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotateX(-5deg) rotateY(7deg) rotateZ(1.5deg);
+  }
+
+  75% {
+    transform: translateY(-7px) rotateX(4deg) rotateY(5deg) rotateZ(-1deg);
+  }
+
+  100% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+}
+
+/* 3D Parallax Badges float on separate Z plane */
+@keyframes badgeFloat3D1 {
+  0% {
+    transform: translateZ(55px) translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateZ(64px) translateY(-9px) rotate(-2deg);
+  }
+}
+
+@keyframes badgeFloat3D2 {
+  0% {
+    transform: translateZ(55px) translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateZ(64px) translateY(9px) rotate(2deg);
+  }
+}
+
+@keyframes ambientBreath {
+  0%,
+  100% {
+    transform: translateZ(-25px) scale(0.95);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: translateZ(-25px) scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+@keyframes shadowPulse3D {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.75;
+    filter: blur(6px);
+  }
+
+  50% {
+    transform: scale(0.82);
+    opacity: 0.35;
+    filter: blur(10px);
+  }
+}
+
 /* Scroll reveal: sections start hidden (only when JS is running) and
    script.js adds .visible when they scroll into view. */
 .js .reveal {
@@ -1635,6 +1861,9 @@ textarea,
   .hero-photo img,
   .hero-photo-wrapper,
   .hero-floating-badge,
+  .photo-ambient-glow,
+  .photo-ground-shadow,
+  .photo-card-frame,
   .hero::before,
   .hero::after,
   .status-indicator::after,

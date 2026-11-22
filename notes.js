@@ -96,16 +96,35 @@
         var fallback = document.getElementById('note-fallback');
         var closeButton = document.getElementById('note-close');
 
+        function resolveNotePath(src) {
+            if (!src) return '';
+            // If already absolute URL, return as-is
+            if (/^(https?:|\/\/)/i.test(src)) return src;
+            try {
+                // Safely resolve relative to site root, guarding against trailing slashes or routing rewrites
+                var origin = window.location.origin;
+                var segments = window.location.pathname.split('/').filter(Boolean);
+                if (segments.length > 0 && !segments[segments.length - 1].includes('.')) {
+                    segments.pop();
+                }
+                var baseDir = origin + '/' + (segments.length ? segments.join('/') + '/' : '');
+                return new URL(src, baseDir).href;
+            } catch (e) {
+                return src;
+            }
+        }
+
         function openNote(src, noteTitle) {
+            var resolvedSrc = resolveNotePath(src);
             if (titleEl) {
                 titleEl.innerHTML = '<i class="fa-regular fa-file-pdf" aria-hidden="true"></i> ' + (noteTitle || 'Note Viewer');
             }
             if (frame) {
                 frame.title = (noteTitle || 'Note') + ' (PDF viewer)';
-                frame.src = src; // Loads PDF on-demand
+                frame.src = resolvedSrc; // Loads PDF on-demand with resolved path
             }
             if (fallback) {
-                fallback.href = src;
+                fallback.href = resolvedSrc;
             }
             document.body.classList.add('no-scroll');
             modal.showModal();

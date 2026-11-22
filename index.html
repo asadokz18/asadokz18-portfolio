@@ -94,10 +94,11 @@
   </header>
 
   <main id="main">
-    <!--Hero Section
-        Introduces the website owner and provides
-        quick links to important portfolio actions. -->
+    <!--Hero Section Introduces the website owner and provides quick links to important portfolio actions. -->
     <section class="hero" id="home" aria-labelledby="hero-title">
+      <!-- Interactive Web & SEO Network Graph Canvas -->
+      <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+
       <div class="container hero-grid">
         <div class="hero-text">
           <div class="hero-status-pill">
@@ -155,11 +156,20 @@
           </ul>
         </div>
 
-        <figure class="hero-photo">
+        <figure class="hero-photo" id="hero-photo">
           <!-- Hero image is above the fold, so it is NOT lazy-loaded -->
-          <div class="hero-photo-wrapper">
-            <img src="assets/images/profile.png" alt="Portrait of Asad Ullah in a suit and tie" width="803"
-              height="1000" />
+          <div class="hero-photo-wrapper" id="hero-photo-wrapper">
+            <!-- Breathing ambient studio backlight -->
+            <div class="photo-ambient-glow" aria-hidden="true"></div>
+
+            <!-- Sleek executive portrait card frame with gradient stroke -->
+            <div class="photo-card-frame">
+              <img src="assets/images/profile.png" alt="Portrait of Asad Ullah in a suit and tie" width="803"
+                height="1000" id="hero-profile-img" />
+              <div class="photo-sheen-overlay" aria-hidden="true"></div>
+            </div>
+
+            <!-- Floating telemetry badges -->
             <div class="hero-floating-badge badge-top" aria-hidden="true">
               <i class="fa-solid fa-code"></i>
               <span>Web Developer</span>
@@ -169,6 +179,9 @@
               <span>SEO Specialist</span>
             </div>
           </div>
+
+          <!-- Dynamic synchronized levitation ground shadow -->
+          <div class="photo-ground-shadow" aria-hidden="true"></div>
         </figure>
       </div>
     </section>

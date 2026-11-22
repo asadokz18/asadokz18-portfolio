@@ -429,6 +429,300 @@
     }
 
     /* ----------------------------------------------------------------------
+       10. HERO INTERACTIVE WEB & SEO NETWORK CANVAS
+       Renders an interactive constellation/graph of interconnected web
+       nodes representing hyperlinks, crawling paths, and SEO indexing.
+       - Connects nearby nodes with dynamic link lines
+       - Interactive cursor gravitational & connection response
+       - Theme-aware colors (light & dark mode)
+       - Pauses automatically when off-screen (0% CPU impact)
+       - High-DPI crisp rendering on retina displays
+       ---------------------------------------------------------------------- */
+    function initHeroNetworkCanvas() {
+        var canvas = document.getElementById('hero-canvas');
+        var hero = document.getElementById('home');
+        if (!canvas || !hero) return;
+
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var root = document.documentElement;
+        var width = 0;
+        var height = 0;
+        var dpr = window.devicePixelRatio || 1;
+        var particles = [];
+        var animId = null;
+        var isVisible = true;
+
+        var mouse = {
+            x: null,
+            y: null,
+            radius: 140
+        };
+
+        function isDarkTheme() {
+            return root.getAttribute('data-theme') === 'dark';
+        }
+
+        function resize() {
+            var rect = hero.getBoundingClientRect();
+            width = rect.width;
+            height = rect.height;
+
+            dpr = window.devicePixelRatio || 1;
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+
+            ctx.scale(dpr, dpr);
+            createParticles();
+        }
+
+        function createParticles() {
+            particles = [];
+            // Target density: ~1 particle per 22,000px^2, clamped between 20 and 48
+            var count = Math.max(18, Math.min(48, Math.floor((width * height) / 22000)));
+
+            for (var i = 0; i < count; i++) {
+                var isSpecial = i % 4 === 0; // 25% are SEO accent nodes
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.55,
+                    vy: (Math.random() - 0.5) * 0.55,
+                    radius: isSpecial ? (Math.random() * 1.5 + 2.5) : (Math.random() * 1.2 + 1.6),
+                    type: isSpecial ? (i % 8 === 0 ? 'accent' : 'emerald') : 'primary',
+                    pulse: Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        function getColors() {
+            var dark = isDarkTheme();
+            return {
+                primaryNode: dark ? 'rgba(96, 165, 250, 0.75)' : 'rgba(30, 64, 175, 0.55)',
+                accentNode: dark ? 'rgba(251, 191, 36, 0.85)' : 'rgba(180, 83, 9, 0.75)',
+                emeraldNode: dark ? 'rgba(52, 211, 153, 0.85)' : 'rgba(16, 185, 129, 0.75)',
+                lineBase: dark ? '96, 165, 250' : '30, 64, 175',
+                mouseLine: dark ? 'rgba(96, 165, 250, 0.28)' : 'rgba(30, 64, 175, 0.22)'
+            };
+        }
+
+        function step() {
+            if (!isVisible) return;
+
+            ctx.clearRect(0, 0, width, height);
+
+            var colors = getColors();
+            var maxDistance = Math.min(130, Math.max(90, width * 0.12));
+            var pLen = particles.length;
+
+            for (var i = 0; i < pLen; i++) {
+                var p = particles[i];
+
+                if (!reducedMotion) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    // Bounce smoothly inside boundaries
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    // Mouse gravitational response
+                    if (mouse.x !== null && mouse.y !== null) {
+                        var dx = mouse.x - p.x;
+                        var dy = mouse.y - p.y;
+                        var dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < mouse.radius) {
+                            var force = (1 - dist / mouse.radius) * 0.08;
+                            p.x += dx * force;
+                            p.y += dy * force;
+
+                            // Draw interactive search-connection line to cursor
+                            ctx.beginPath();
+                            ctx.strokeStyle = colors.mouseLine;
+                            ctx.lineWidth = 1;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            ctx.stroke();
+                        }
+                    }
+
+                    p.pulse += 0.025;
+                }
+
+                // Render node
+                var nodeColor = p.type === 'accent'
+                    ? colors.accentNode
+                    : (p.type === 'emerald' ? colors.emeraldNode : colors.primaryNode);
+
+                ctx.beginPath();
+                var currentRadius = p.radius + (reducedMotion ? 0 : Math.sin(p.pulse) * 0.5);
+                ctx.arc(p.x, p.y, Math.max(1, currentRadius), 0, Math.PI * 2);
+                ctx.fillStyle = nodeColor;
+                ctx.fill();
+
+                // Draw connecting network lines to nearby nodes
+                for (var j = i + 1; j < pLen; j++) {
+                    var p2 = particles[j];
+                    var ldx = p.x - p2.x;
+                    var ldy = p.y - p2.y;
+                    var ldist = Math.sqrt(ldx * ldx + ldy * ldy);
+
+                    if (ldist < maxDistance) {
+                        var alpha = (1 - (ldist / maxDistance)) * 0.18;
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'rgba(' + colors.lineBase + ',' + alpha.toFixed(3) + ')';
+                        ctx.lineWidth = 0.85;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            if (!reducedMotion) {
+                animId = requestAnimationFrame(step);
+            }
+        }
+
+        // Mouse interaction listeners on Hero
+        hero.addEventListener('mousemove', function (e) {
+            var rect = hero.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        hero.addEventListener('mouseleave', function () {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Window resize with debounce
+        var resizeTimer = null;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                resize();
+                if (reducedMotion) step();
+            }, 120);
+        });
+
+        // IntersectionObserver: stop animation when hero is off-screen
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                var entry = entries[0];
+                isVisible = entry.isIntersecting;
+                if (isVisible && !reducedMotion) {
+                    cancelAnimationFrame(animId);
+                    animId = requestAnimationFrame(step);
+                }
+            }, { threshold: 0.05 }).observe(hero);
+        }
+
+        // Initialize size and start loop
+        resize();
+        step();
+    }
+
+    /* ----------------------------------------------------------------------
+       11. HERO PHOTO 3D PERSPECTIVE TILT & SPECULAR LIGHTING
+       Applies buttery-smooth physics-based 3D tilt tracking with linear
+       interpolation (lerp), multi-layer parallax depth, dynamic counter
+       shadow, and real-time specular lighting reflecting cursor movement.
+       ---------------------------------------------------------------------- */
+    function initHeroPhotoTilt() {
+        var photo = document.getElementById('hero-photo');
+        var wrapper = document.getElementById('hero-photo-wrapper');
+        var cardFrame = photo ? photo.querySelector('.photo-card-frame') : null;
+        var shadow = photo ? photo.querySelector('.photo-ground-shadow') : null;
+        if (!photo || !wrapper) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var isHovered = false;
+        var targetRotX = 0;
+        var targetRotY = 0;
+        var currentRotX = 0;
+        var currentRotY = 0;
+        var targetShadowX = 0;
+        var currentShadowX = 0;
+        var rafId = null;
+
+        function update3DPhysics() {
+            var lerpFactor = 0.12;
+            currentRotX += (targetRotX - currentRotX) * lerpFactor;
+            currentRotY += (targetRotY - currentRotY) * lerpFactor;
+            currentShadowX += (targetShadowX - currentShadowX) * lerpFactor;
+
+            if (isHovered || Math.abs(currentRotX) > 0.05 || Math.abs(currentRotY) > 0.05) {
+                wrapper.style.transform =
+                    'perspective(1200px) rotateX(' + currentRotX.toFixed(2) + 'deg) rotateY(' + currentRotY.toFixed(2) + 'deg) scale3d(1.04, 1.04, 1.04)';
+
+                if (shadow) {
+                    shadow.style.transform = 'translateX(' + (-currentShadowX).toFixed(1) + 'px) scale(' + (1 - Math.abs(currentRotX) * 0.01).toFixed(2) + ')';
+                }
+                rafId = requestAnimationFrame(update3DPhysics);
+            } else {
+                // Smoothly settled back at rest position -> seamlessly resume continuous 3D float
+                wrapper.style.transform = '';
+                if (shadow) shadow.style.transform = '';
+                wrapper.style.animationPlayState = 'running';
+                rafId = null;
+            }
+        }
+
+        photo.addEventListener('mouseenter', function () {
+            isHovered = true;
+            wrapper.style.animationPlayState = 'paused';
+            if (!rafId) {
+                rafId = requestAnimationFrame(update3DPhysics);
+            }
+        });
+
+        photo.addEventListener('mousemove', function (e) {
+            if (!isHovered) return;
+            var rect = photo.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+
+            var centerX = rect.width / 2;
+            var centerY = rect.height / 2;
+
+            // Expressive 3D tilt angles (up to +/- 13deg)
+            targetRotX = ((y - centerY) / centerY) * -13;
+            targetRotY = ((x - centerX) / centerX) * 13;
+
+            // Counter shadow offset in 3D lighting
+            targetShadowX = (targetRotY / 13) * 10;
+
+            // Track dynamic specular sheen position under cursor
+            if (cardFrame) {
+                var pctX = Math.round((x / rect.width) * 100);
+                var pctY = Math.round((y / rect.height) * 100);
+                cardFrame.style.setProperty('--mouse-x', pctX + '%');
+                cardFrame.style.setProperty('--mouse-y', pctY + '%');
+            }
+        });
+
+        photo.addEventListener('mouseleave', function () {
+            isHovered = false;
+            targetRotX = 0;
+            targetRotY = 0;
+            targetShadowX = 0;
+            if (cardFrame) {
+                cardFrame.style.removeProperty('--mouse-x');
+                cardFrame.style.removeProperty('--mouse-y');
+            }
+            if (!rafId) {
+                rafId = requestAnimationFrame(update3DPhysics);
+            }
+        });
+    }
+
+    /* ----------------------------------------------------------------------
        START
        script.js is loaded with "defer", so the HTML is ready when this runs.
        ---------------------------------------------------------------------- */
@@ -440,6 +734,8 @@
         initBackToTop();
         initContactForm();
         initTypingEffect();
+        initHeroNetworkCanvas();
+        initHeroPhotoTilt();
         setCopyrightYear();
         initProjectsFilter();
     }
